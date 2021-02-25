@@ -1,0 +1,8 @@
+<?php
+
+// database configuration
+define('DB_HOST', 'localhost');                 // database host
+define('DB_NAME', 'database_name');             // database name
+define('DB_USER', 'username');                  // username
+define('DB_PASS', 'password');                  // password
+define('DB_CHARSET', 'utf8mb4_unicode_ci');     // charset
