@@ -20,6 +20,8 @@ class Route
     {
         $url = trim($url);
 
+        // TODO: rework this
+
         if ($url == "/todo-list/") {
             $request->controller = 'home';
             $request->action = 'index';
@@ -27,8 +29,8 @@ class Route
         } else {
             $urlParams = explode('/', $url);
             $urlParams = array_slice($urlParams, 2);
-            $request->controller = $urlParams[0] ?? null;
-            $request->action = $urlParams[1] ?? null;
+            $request->controller = $urlParams[0] ?? 'home';
+            $request->action = $urlParams[1] ?? 'index';
             $request->params = array_slice($urlParams, 2);
         }
     }
