@@ -26,13 +26,13 @@ class Route
         // TODO: rework this
 
         if ($url == "/todo-list/") {
-            $request->controller = 'home';
+            $request->controller = 'Home';
             $request->action = 'index';
             $request->params = [];
         } else {
             $urlParams = explode('/', $url);
             $urlParams = array_slice($urlParams, 2);
-            $request->controller = $urlParams[0] ?? 'home';
+            $request->controller = ucfirst($urlParams[0]) ?? 'Home';
             $request->action = $urlParams[1] ?? 'index';
             $request->params = array_slice($urlParams, 2);
         }
@@ -40,10 +40,11 @@ class Route
 
     public function loadController()
     {
-        $name = $this->request->controller . 'Controller';
-        $file = ROOT . 'controllers/' . $name . '.php';
-        require($file);
-        $controller = new $name();
+        // get the complete classname with namespace
+        $class = 'Controllers\\' . ucfirst($this->request->controller) . 'Controller';
+        // autoload.php with autoload the class
+        $controller = new $class();
+        // return the controller (class)
         return $controller;
     }
 }
