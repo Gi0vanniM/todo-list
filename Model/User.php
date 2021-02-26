@@ -1,5 +1,9 @@
 <?php
-require(ROOT . 'core/database.php');
+
+namespace Model;
+
+use Core\Database;
+
 class User extends Database
 {
     public function getUsers()
