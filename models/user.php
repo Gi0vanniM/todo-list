@@ -1,6 +1,6 @@
 <?php
 require(ROOT . 'core/database.php');
-class User extends DB
+class User extends Database
 {
     public function getUsers()
     {

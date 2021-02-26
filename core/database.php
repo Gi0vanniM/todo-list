@@ -1,5 +1,5 @@
 <?php
-class DB
+class Database
 {
     protected static $instance;
     protected $pdo;
