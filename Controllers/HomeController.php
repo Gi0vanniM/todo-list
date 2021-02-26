@@ -1,8 +1,10 @@
 <?php
 
+namespace Controllers;
+
 use Core\Core;
 
-class homeController
+class HomeController
 {
     public function index()
     {
