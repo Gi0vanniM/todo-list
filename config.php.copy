@@ -6,3 +6,6 @@ define('DB_NAME', 'database_name');             // database name
 define('DB_USER', 'username');                  // username
 define('DB_PASS', 'password');                  // password
 define('DB_CHARSET', 'utf8mb4');                // charset
+
+// site configuration
+define('APP_NAME', 'Todo-list');
