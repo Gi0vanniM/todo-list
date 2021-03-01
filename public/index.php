@@ -2,8 +2,8 @@
 
 define("ROOT", dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
-require(ROOT . 'Helpers/autoload.php');
 require(ROOT . 'config.php');
+require(ROOT . 'Helpers/autoload.php');
 
 $route = new Core\Route();
 $route->route();
