@@ -9,3 +9,4 @@ define('DB_CHARSET', 'utf8mb4');                // charset
 
 // site configuration
 define('APP_NAME', 'Todo-list');
+define('APP_URL', '/todo-list/');
