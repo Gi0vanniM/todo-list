@@ -15,3 +15,34 @@
 </head>
 
 <body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+            <a href="<?= APP_URL ?>" class="navbar-brand"><?= APP_NAME ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarButtons" aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarButtons">
+                <ul class="navbar-nav">
+
+                </ul>
+            </div>
+            <ul class="navbar-nav">
+
+                <?php
+                // if !logged in 
+                ?>
+
+                <a href="<?= APP_URL ?>login" class="nav-link">Login</a>
+                <a href="<?= APP_URL ?>register" class="nav-link">Register</a>
+
+                <?php
+                // if logged in 
+                ?>
+                <a href="<?= APP_URL ?>logout" class="nav-link">Logout</a>
+
+            </ul>
+        </nav>
+    </header>
