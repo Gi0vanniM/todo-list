@@ -8,6 +8,7 @@ class Request
 
     public function __construct()
     {
-        $this->url = $_SERVER["REQUEST_URI"];
+        $host = (VHOST) ? $_SERVER['SERVER_NAME'] : '';
+        $this->url = $host . $_SERVER["REQUEST_URI"];
     }
 }

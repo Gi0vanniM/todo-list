@@ -25,7 +25,7 @@ class Route
 
         // TODO: rework this
 
-        if ($url == APP_URL) {
+        if ($url == APP_URL || $url == APP_URL . '/') {
             $request->controller = 'Home';
             $request->action = 'index';
             $request->params = [];
