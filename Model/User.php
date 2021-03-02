@@ -6,23 +6,71 @@ use Core\Database;
 
 class User extends Database
 {
-    public function getUsers()
+
+    public $username;
+    public $role;
+    public $createdAt;
+
+    private $password;
+
+    /**
+     * get all the users in the database
+     *
+     * @return User[]
+     */
+    public function getAllUsers()
     {
         return $this->run('SELECT * FROM users');
     }
 
-    public function createUser($name, $pass, $role)
+    /**
+     * get a specific user by id
+     *
+     * @param [type] $id
+     * @return User
+     */
+    public static function getUserById($id)
     {
-        $sql = 'INSERT INTO users name=:name, password=:pass, role=:role';
+        return $jeff = (new Database())->run('SELECT username, created_at FROM users WHERE id=:id', ['id' => $id])->fetch();
+    }
+
+    /**
+     * update a user
+     *
+     * @param [type] $username
+     * @param [type] $password
+     * @return void
+     */
+    public function updateUser($username, $password)
+    {
+        $sql = 'UPDATE users SET username=:username, password=:password';
         $args = [
-            'name' => $name,
-            'pass' => password_hash($pass, PASSWORD_DEFAULT),
-            'role' => $role,
+            'username' => $username,
+            'password' => $password,
+        ];
+        $this->run($sql, $args);
+    }
+
+    /**
+     * create a user
+     *
+     * @param [type] $username
+     * @param [type] $password
+     * @return void
+     */
+    public function createUser($username, $password)
+    {
+        $sql = 'INSERT INTO users username=:username, password=:password, role=:role';
+        $args = [
+            'username' => $username,
+            'password' => password_hash($password, PASSWORD_BCRYPT),
         ];
 
         $this->run($sql, $args);
     }
 
 
-    //INSERT INTO `users`(`name`, `password`, `role`) VALUES ('Giovanni','123','admin')
+
+
+    //INSERT INTO `users`(`username`, `password`, `role`) VALUES ('Giovanni','123','admin')
 }
