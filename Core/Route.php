@@ -25,7 +25,7 @@ class Route
 
         // TODO: rework this
 
-        if ($url == "/todo-list/") {
+        if ($url == APP_URL) {
             $request->controller = 'Home';
             $request->action = 'index';
             $request->params = [];
