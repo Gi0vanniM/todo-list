@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2021 at 02:52 PM
+-- Generation Time: Mar 03, 2021 at 11:30 AM
 -- Server version: 10.3.25-MariaDB-0ubuntu1
 -- PHP Version: 8.0.2
 
@@ -87,6 +87,7 @@ CREATE TABLE `tasks` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(72) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
@@ -96,8 +97,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
-(1, 'admin', '1234', '2021-03-01 14:52:10');
+INSERT INTO `users` (`id`, `email`, `username`, `password`, `created_at`) VALUES
+(1, '', 'admin', '1234', '2021-03-01 14:52:10');
 
 -- --------------------------------------------------------
 
@@ -145,7 +146,8 @@ ALTER TABLE `tasks`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email` (`email`);
 
 --
 -- Indexes for table `user_roles`
