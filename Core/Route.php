@@ -15,7 +15,7 @@ class Route
         if (method_exists($controller, $this->request->action)) {
             call_user_func_array([$controller, $this->request->action], $this->request->params);
         } else {
-            exit("<h1 style='color: red;'>An error has occured</h1>");
+            exit("<h1 style='color: red;'>An error has occured. Could not find $controller</h1>");
         }
     }
 
@@ -31,8 +31,8 @@ class Route
             $request->params = [];
         } else {
             $urlParams = explode('/', $url);
-            $urlParams = array_slice($urlParams, 2);
-            $request->controller = ucfirst($urlParams[0]) ?? 'Home';
+            $urlParams = array_slice($urlParams, (VHOST) ? 1 : 2);
+            $request->controller = ucfirst($urlParams[0] ?? 'Home');
             $request->action = $urlParams[1] ?? 'index';
             $request->params = array_slice($urlParams, 2);
         }
@@ -42,9 +42,13 @@ class Route
     {
         // get the complete classname with namespace
         $class = 'Controllers\\' . ucfirst($this->request->controller) . 'Controller';
-        // autoload.php with autoload the class
-        $controller = new $class();
-        // return the controller (class)
-        return $controller;
+        // check if class exists
+        if (class_exists($class)) {
+            // autoload.php will autoload the class
+            $controller = new $class();
+            // return the controller (class)
+            return $controller;
+        }
+        return $this->request->controller;
     }
 }
