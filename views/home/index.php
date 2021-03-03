@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-2">
     <div class="card">
         <div class="card-body">
             <h1>Todo-list app</h1>
