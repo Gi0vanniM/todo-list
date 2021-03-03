@@ -18,7 +18,7 @@
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
-            <a href="<?= APP_URL ?>" class="navbar-brand"><?= APP_NAME ?></a>
+            <a href="<?= (VHOST ? '//' : '') . APP_URL ?>" class="navbar-brand"><?= APP_NAME ?></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarButtons" aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,14 +34,12 @@
                 <?php
                 // if !logged in 
                 ?>
-
-                <a href="<?= APP_URL ?>login" class="nav-link">Login</a>
-                <a href="<?= APP_URL ?>register" class="nav-link">Register</a>
-
+                <a href="login" class="nav-link">Login</a>
+                <a href="register" class="nav-link">Register</a>
                 <?php
                 // if logged in 
                 ?>
-                <a href="<?= APP_URL ?>logout" class="nav-link">Logout</a>
+                <a href="logout" class="nav-link">Logout</a>
 
             </ul>
         </nav>
