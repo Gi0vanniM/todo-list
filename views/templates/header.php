@@ -25,22 +25,22 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarButtons">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav w-100">
+
+                    <!-- Auth button -->
+                    <ul class="navbar-nav ml-auto">
+                        <?php
+                        // if !logged in 
+                        ?>
+                        <a href="login" class="nav-link">Login</a>
+                        <a href="register" class="nav-link">Register</a>
+                        <?php
+                        // if logged in 
+                        ?>
+                        <a href="logout" class="nav-link">Logout</a>
+                    </ul>
 
                 </ul>
             </div>
-            <ul class="navbar-nav">
-
-                <?php
-                // if !logged in 
-                ?>
-                <a href="login" class="nav-link">Login</a>
-                <a href="register" class="nav-link">Register</a>
-                <?php
-                // if logged in 
-                ?>
-                <a href="logout" class="nav-link">Logout</a>
-
-            </ul>
         </nav>
     </header>
