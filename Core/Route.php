@@ -40,8 +40,22 @@ class Route
 
     public function loadController()
     {
+        // this bit has to be a bit static in order to work in the way I want it to
+        switch ($this->request->controller) {
+            case 'Login':
+            case 'Register':
+            case 'Logout':
+                // /login /register and /logout will be done in the AuthController
+                $class = 'Controllers\\Auth\\' . ucfirst($this->request->controller);
+                include ROOT . 'Controllers/AuthController.php';
+                return new $class();
+                break;
+            default:
+                // other controllers
+                $class = 'Controllers\\' . ucfirst($this->request->controller) . 'Controller';
+            break;
+        }
         // get the complete classname with namespace
-        $class = 'Controllers\\' . ucfirst($this->request->controller) . 'Controller';
         // check if class exists
         if (class_exists($class)) {
             // autoload.php will autoload the class
