@@ -9,7 +9,7 @@ class User extends Database
 
     public $username;
     public $role;
-    public $createdAt;
+    public $created_at;
 
     private $password;
 
