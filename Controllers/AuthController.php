@@ -105,6 +105,7 @@ class Logout
 {
     public function index()
     {
+        session_destroy();
         header("location: //" . APP_URL);
         exit;
     }
