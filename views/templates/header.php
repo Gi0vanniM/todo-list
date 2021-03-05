@@ -29,15 +29,16 @@
 
                     <!-- Auth button -->
                     <ul class="navbar-nav ml-auto">
-                        <?php
-                        // if !logged in 
-                        ?>
+                        <?php if (!isset($_SESSION['id'])) { ?>
+
                         <a href="login" class="nav-link">Login</a>
                         <a href="register" class="nav-link">Register</a>
-                        <?php
-                        // if logged in 
-                        ?>
+                        
+                        <?php } else { ?>
+
                         <a href="logout" class="nav-link">Logout</a>
+
+                        <?php } ?>
                     </ul>
 
                 </ul>
