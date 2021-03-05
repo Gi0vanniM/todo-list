@@ -55,21 +55,30 @@ class User extends Database
      * create a user
      *
      * @param [type] $username
+     * @param [type] $email
      * @param [type] $password
      * @return void
      */
-    public function createUser($username, $password)
+    public static function createUser($username, $email, $password)
     {
-        $sql = 'INSERT INTO users username=:username, password=:password, role=:role';
+        $sql = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
         $args = [
             'username' => $username,
+            'email' => $email,
             'password' => password_hash($password, PASSWORD_BCRYPT),
         ];
-
-        $this->run($sql, $args);
+        (new Database)->run($sql, $args);
     }
 
 
+    public static function emailExists($email)
+    {
+        $query = (new Database)->run('SELECT email FROM users WHERE email=:email', ['email'=>$email])->fetch();
+        if ($query) {
+            return true;
+        }
+        return false;
+    }
 
 
     //INSERT INTO `users`(`username`, `password`, `role`) VALUES ('Giovanni','123','admin')
