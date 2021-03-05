@@ -15,8 +15,42 @@ class Login
 
     public function login()
     {
-        header("location: //".APP_URL);
-        exit;
+        if (isset($_POST['loginUser'])) {
+            $emailSignin = Helper::sanitize($_POST['email']);
+            $passwordSignin = Helper::sanitize($_POST['password']);
+
+            if (!User::emailExists($emailSignin)) {
+                echo 'E-mail not found.';
+                exit;
+            }
+
+            // get the user
+            $user = User::getUserByEmail($emailSignin);
+
+            // verify password
+            $pass = password_verify($passwordSignin, $user->password);
+
+            // double check
+            if ($emailSignin == $user->email && $pass) {
+                $_SESSION['id'] = $user->id;
+                $_SESSION['username'] = $user->username;
+                $_SESSION['email'] = $user->email;
+                $_SESSION['token'] = '1234';
+
+                header("location: //" . APP_URL);
+                exit;
+            }
+
+        } else {
+            echo <<<HTML
+            <div class="alert alert-ERROR" role="alert">
+                <strong>Something has gone wrong.</strong>
+            </div>
+            HTML;
+        }
+
+        // header("location: //".APP_URL);
+        // exit;
     }
 
 }
