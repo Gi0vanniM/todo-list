@@ -22,7 +22,7 @@ class Helper
         return false;
     }
 
-    public function sanitize($data)
+    public static function sanitize($data)
     {
         $data = trim($data);
         $data = htmlspecialchars($data);
