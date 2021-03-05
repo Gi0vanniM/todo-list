@@ -31,7 +31,12 @@ class User extends Database
      */
     public static function getUserById($id)
     {
-        return $jeff = (new Database())->run('SELECT username, created_at FROM users WHERE id=:id', ['id' => $id])->fetch();
+        return (new Database())->run('SELECT username, created_at FROM users WHERE id=:id', ['id' => $id])->fetch();
+    }
+
+    public static function getUserByEmail($email) 
+    {
+        return (new Database())->run('SELECT * FROM users WHERE email=:email', ['email' => $email])->fetch();
     }
 
     /**
