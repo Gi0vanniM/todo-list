@@ -33,7 +33,7 @@
                             <label for="confirmpassword">Confirm password</label>
                         </div>
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="registerUser">Register</button>
                         <a class="d-block text-center mt-2 small" href="login">Sign In</a>
                         <hr class="my-4">
                     </form>
