@@ -10,7 +10,7 @@ class Login
 {
     public function index()
     {
-        return Core::view('auth/login', ['title' => 'Login']);
+        return Core::view('auth/login', ['title' => 'Login', 'alert' => Helper::alert()]);
     }
 
     public function login()
@@ -28,7 +28,7 @@ class Login
                 header("location: //" . APP_URL);
                 exit;
             } else {
-                header("location: //" . APP_URL . "/login?error=jeff");
+                header("location: //" . APP_URL . "/login?error=login&email=$emailSignin");
             }
 
         } else {
@@ -49,7 +49,7 @@ class Register
 {
     public function index()
     {
-        return Core::view('auth/register', ['title' => 'Register']);
+        return Core::view('auth/register', ['title' => 'Register', 'alert' => Helper::alert()]);
     }
 
     public function register()
@@ -72,7 +72,7 @@ class Register
             // if password is not the same as confirmpassword
             // exit out
             if ($password !== $confirmPassword) {
-                echo 'Password not correct';
+                header("location: //" . APP_URL . "/register?error=pass&username=$username&email=$email");
                 exit;
             }
 
