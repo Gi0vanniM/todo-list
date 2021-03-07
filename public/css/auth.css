@@ -109,3 +109,7 @@ background-color: #ea4335;
 color: white;
 background-color: #3b5998;
 }
+
+.alert {
+    border-radius: 1rem;
+}
