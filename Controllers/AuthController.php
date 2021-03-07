@@ -19,26 +19,16 @@ class Login
             $emailSignin = strtolower(Helper::sanitize($_POST['email']));
             $passwordSignin = Helper::sanitize($_POST['password']);
 
-            if (!User::emailExists($emailSignin)) {
-                echo 'E-mail not found.';
-                exit;
-            }
+            $user = new User();
 
-            // get the user
-            $user = User::getUserByEmail($emailSignin);
-
-            // verify password
-            $pass = password_verify($passwordSignin, $user->password);
+            $user->login($emailSignin, $passwordSignin);
 
             // double check
-            if ($emailSignin == $user->email && $pass) {
-                $_SESSION['userid'] = $user->id;
-                $_SESSION['username'] = $user->username;
-                $_SESSION['email'] = $user->email;
-                $_SESSION['token'] = '1234';
-
+            if ($user->loggedIn) {
                 header("location: //" . APP_URL);
                 exit;
+            } else {
+                header("location: //" . APP_URL . "/login?error=jeff");
             }
 
         } else {
@@ -70,9 +60,11 @@ class Register
             $password = Helper::sanitize($_POST['password']);
             $confirmPassword = Helper::sanitize($_POST['confirmpassword']);
 
+            $user = new User();
+
             // check if email already exists
             // if so, stop the register process
-            if (User::emailExists($email)) {
+            if ($user->emailExists($email)) {
                 echo 'E-mail already registered';
                 exit;
             }
@@ -84,7 +76,9 @@ class Register
                 exit;
             }
 
-            User::createUser($username, $email, $password);
+            if ($user->register($username, $email, $password)) {
+                header("location: //" . APP_URL . "/login");
+            }
 
         } else {
             echo <<<HTML
@@ -94,10 +88,7 @@ class Register
             HTML;
         }
 
-
-
-        // header("location: //".APP_URL);
-        // exit;
+        exit;
     }
 }
 

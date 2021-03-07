@@ -27,9 +27,13 @@
             <div class="collapse navbar-collapse" id="navbarButtons">
                 <ul class="navbar-nav w-100">
 
+                    <?php if (isset($_SESSION['username'])) { ?>
+                        <a href="#" class="nav-link"><?= $_SESSION['username'] ?></a>
+                    <?php } ?>
+
                     <!-- Auth button -->
-                    <ul class="navbar-nav ml-auto">
-                        <?php if (!isset($_SESSION['id'])) { ?>
+                    <ul class="navbar-nav ml-lg-auto">
+                        <?php if (!isset($_SESSION['userid'])) { ?>
 
                         <a href="login" class="nav-link">Login</a>
                         <a href="register" class="nav-link">Register</a>
