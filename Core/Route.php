@@ -22,6 +22,7 @@ class Route
     public function parse($url, $request)
     {
         $url = trim($url);
+        $url = strstr($url, '?', true) ?: $url;
 
         // TODO: rework this
 
