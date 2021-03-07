@@ -4,20 +4,25 @@
 
     <div class="row">
 
-        <div class="col-lg-10 col-xl-9 mx-auto">
-            <div class="card card-signin flex-row my-5">
+        <div class="col-lg-10 col-xl-9 mx-auto my-5">
+
+            <?= $alert ?>
+
+            <div class="card card-signin flex-row">
 
                 <div class="card-body">
                     <h5 class="card-title text-center">Register</h5>
                     <form action="register/register" method="post" class="form-signin">
 
                         <div class="form-label-group">
-                            <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
+                            <input type="text" name="username" id="username" class="form-control" 
+                                placeholder="Username" required autofocus value="<?= $_GET['username'] ?? '' ?>">
                             <label for="username">Username</label>
                         </div>
 
                         <div class="form-label-group">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required>
+                            <input type="email" name="email" id="email" class="form-control" 
+                                placeholder="Email address" required value="<?= $_GET['email'] ?? '' ?>">
                             <label for="email">Email address</label>
                         </div>
 
