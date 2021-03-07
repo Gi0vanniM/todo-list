@@ -16,7 +16,7 @@ class Login
     public function login()
     {
         if (isset($_POST['loginUser'])) {
-            $emailSignin = Helper::sanitize($_POST['email']);
+            $emailSignin = strtolower(Helper::sanitize($_POST['email']));
             $passwordSignin = Helper::sanitize($_POST['password']);
 
             if (!User::emailExists($emailSignin)) {
@@ -32,7 +32,7 @@ class Login
 
             // double check
             if ($emailSignin == $user->email && $pass) {
-                $_SESSION['id'] = $user->id;
+                $_SESSION['userid'] = $user->id;
                 $_SESSION['username'] = $user->username;
                 $_SESSION['email'] = $user->email;
                 $_SESSION['token'] = '1234';

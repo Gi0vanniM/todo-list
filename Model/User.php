@@ -1,90 +1,53 @@
-<?php
-
-namespace Model;
+<?php namespace Model;
 
 use Core\Database;
 
-class User extends Database
-{
-
+// TODO REWRITE USER CLASS
+class User {
+    public $id;
     public $username;
     public $role;
-    public $created_at;
+    public $createdAt;
 
+    private $email;
     private $password;
+    private $db;
 
-    /**
-     * get all the users in the database
-     *
-     * @return User[]
-     */
-    public function getAllUsers()
+    public function __construct($id = null)
     {
-        return $this->run('SELECT * FROM users');
+        $this->db = new Database();
+
+        if (isset($_SESSION['userid'])) {
+            $query = $this->db->run('SELECT * FROM users WHERE id=:id', ['id' => $_SESSION['userid']]);
+        }
     }
 
-    /**
-     * get a specific user by id
-     *
-     * @param [type] $id
-     * @return User
-     */
-    public static function getUserById($id)
+    public function login()
     {
-        return (new Database())->run('SELECT username, created_at FROM users WHERE id=:id', ['id' => $id])->fetch();
+
     }
 
-    public static function getUserByEmail($email) 
-    {
-        return (new Database())->run('SELECT * FROM users WHERE email=:email', ['email' => $email])->fetch();
-    }
+    public function logout() {}
 
-    /**
-     * update a user
-     *
-     * @param [type] $username
-     * @param [type] $password
-     * @return void
-     */
-    public function updateUser($username, $password)
-    {
-        $sql = 'UPDATE users SET username=:username, password=:password';
-        $args = [
-            'username' => $username,
-            'password' => $password,
-        ];
-        $this->run($sql, $args);
-    }
-
-    /**
-     * create a user
-     *
-     * @param [type] $username
-     * @param [type] $email
-     * @param [type] $password
-     * @return void
-     */
-    public static function createUser($username, $email, $password)
+    public function create()
     {
         $sql = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
         $args = [
-            'username' => $username,
-            'email' => $email,
-            'password' => password_hash($password, PASSWORD_BCRYPT),
+            'username' => $this->username,
+            'email' => strtolower($this->email),
+            'password' => password_hash($this->password, PASSWORD_BCRYPT),
         ];
-        (new Database)->run($sql, $args);
+        $this->db->run($sql, $args);
+        // maybe return something?
     }
 
-
-    public static function emailExists($email)
+    public function emailExists($email) 
     {
-        $query = (new Database)->run('SELECT email FROM users WHERE email=:email', ['email'=>$email])->fetch();
+        $query = $this->db->run('SELECT email FROM users WHERE email=:email', ['email'=>$email])->fetch();
         if ($query) {
             return true;
         }
         return false;
     }
 
-
-    //INSERT INTO `users`(`username`, `password`, `role`) VALUES ('Giovanni','123','admin')
 }
