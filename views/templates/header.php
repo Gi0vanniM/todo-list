@@ -29,6 +29,7 @@
 
                     <?php if (isset($_SESSION['username'])) { ?>
                         <a href="#" class="nav-link"><?= $_SESSION['username'] ?></a>
+                        <a href="board" class="nav-link">Board</a>
                     <?php } ?>
 
                     <!-- Auth button -->
