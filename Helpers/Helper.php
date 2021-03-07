@@ -38,7 +38,10 @@ class Helper
 
             switch ($_GET['error']) {
                 case 'pass':
-                    $message =  'Incorrect password';
+                    $message = 'Incorrect password';
+                    break;
+                case 'login':
+                    $message = 'Incorrected e-mail or password';
                     break;
                 
                 default:
