@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 03, 2021 at 11:30 AM
+-- Generation Time: Mar 07, 2021 at 02:15 PM
 -- Server version: 10.3.25-MariaDB-0ubuntu1
 -- PHP Version: 8.0.2
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `lists` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `list_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -42,14 +42,14 @@ CREATE TABLE `lists` (
 
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
-  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
+  `role_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `name`) VALUES
+INSERT INTO `roles` (`id`, `role_name`) VALUES
 (1, 'user'),
 (2, 'admin');
 
@@ -98,7 +98,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `created_at`) VALUES
-(1, '', 'admin', '1234', '2021-03-01 14:52:10');
+(1, 'admin@mail.com', 'admin', '$2y$10$zDhfsirELLyQBTQXp1yYBucFBcgPMC2eP67sNVk.6VaQ1GWKgNLcK', '2021-03-01 14:52:10'),
+(2, 'user@mail.com', 'User', '$2y$10$zDhfsirELLyQBTQXp1yYBucFBcgPMC2eP67sNVk.6VaQ1GWKgNLcK', '2021-03-05 11:21:46');
 
 -- --------------------------------------------------------
 
@@ -110,6 +111,14 @@ CREATE TABLE `user_roles` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
+(1, 2),
+(2, 1);
 
 --
 -- Indexes for dumped tables
@@ -188,7 +197,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
