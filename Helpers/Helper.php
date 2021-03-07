@@ -29,4 +29,28 @@ class Helper
         $data = stripcslashes($data);
         return $data;
     }
+
+    public static function alert()
+    {
+        if (isset($_GET['error'])) {
+
+            $message = '';
+
+            switch ($_GET['error']) {
+                case 'pass':
+                    $message =  'Incorrect password';
+                    break;
+                
+                default:
+                    $message = 'Something went wrong';
+                    break;
+            }
+            return <<<HTML
+                <div class="alert alert-danger" role="alert">
+                        $message
+                </div> 
+                HTML;
+
+        }
+    }
 }
