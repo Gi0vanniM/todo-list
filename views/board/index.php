@@ -11,9 +11,9 @@
                 <textarea class="list-title m-0">List title title title title title title title</textarea>
 
                 <div class="list-header-extra">
-                    <a href="#" class="list-option">
+                    <button class="list-option">
                         <i class="fas fa-ellipsis-h"></i>
-                    </a>
+                    </button>
                 </div>
 
             </div>
