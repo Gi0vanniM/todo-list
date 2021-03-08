@@ -1,0 +1,120 @@
+header {
+    height: 3.5rem;
+}
+nav {
+    height: 3.5rem;
+}
+
+.list-container {
+    display: grid;
+    grid-auto-columns: 275px;
+    grid-auto-flow: column;
+    column-gap: .5rem;
+    align-items: start;
+    overflow-x: auto;
+    height: calc(100vh - 4.5rem);
+}
+
+.list {
+    display: grid;
+
+    background-color: #e2e4e6 !important;
+    border-radius: .5rem;
+
+    grid-template-rows: auto minmax(auto, 1fr) auto;
+    max-height: calc(100vh - 8rem);
+}
+
+.list-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: .5rem;
+    background: transparent;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    width: 80%;
+}
+
+textarea {
+    border: none !important;
+    box-sizing: border-box;
+    resize: none !important;
+    width: 100%;
+}
+textarea:focus {
+    box-shadow: inset 0 0 0 2px #0079bf;
+    background-color: #fff;
+}
+.list-header {
+    position: relative;
+}
+.list-header-extra {
+    position: absolute;
+    box-sizing: content-box;
+    right: .3rem;
+    top: .3rem;
+    z-index: 1;
+}
+.list-option {
+    display: block;
+    box-sizing: content-box;
+    color: #6b778c;
+    height: 20px;
+    width: 20px;
+    padding: 6px;
+    border-radius: 3px;
+
+    border: none;
+    background: transparent;
+    
+    text-align: center;
+    text-decoration: none;
+}
+.list-option:hover {
+    color: #172b4d;
+    background-color: rgba(9,30,66,.08);
+}
+
+.list-items {
+    list-style: none;
+    display: grid;
+    grid-row-gap: 0.6rem;
+
+    align-content: start;
+    padding: 0 0.6rem 0.5rem;
+    overflow-y: auto;
+}
+
+.list-items li {
+    background-color: white;
+    border-radius: 0.3rem;
+    border-bottom: 0.1rem solid #ccc;
+    padding: 0.5rem 0.6rem;
+    word-wrap: break-word;
+    margin: 0;
+    color: #4d4d4d;
+}
+.list-items li:hover {
+    background-color: #eee;
+}
+
+/* add list and add card button(s) */
+.add-list-btn {
+    background-color: #e2e4e6 !important;
+    border-radius: .5rem !important;
+    text-align: left !important;
+    color: #838c91 !important;
+}
+.add-list-btn:hover, .add-card-btn:hover {
+    background-color: #cdd2d4 !important;
+    color: #4d4d4d;
+    text-decoration: underline !important;
+}
+.add-card-btn {
+    display: block;
+    text-align: left !important;
+    color: #838c91 !important;
+}
+.add-card-btn:focus, .add-list-btn:focus {
+    box-shadow: none !important;
+}
