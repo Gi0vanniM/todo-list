@@ -55,7 +55,7 @@ textarea:focus {
     top: .3rem;
     z-index: 1;
 }
-a.list-option {
+.list-option {
     display: block;
     box-sizing: content-box;
     color: #6b778c;
@@ -63,6 +63,9 @@ a.list-option {
     width: 20px;
     padding: 6px;
     border-radius: 3px;
+
+    border: none;
+    background: transparent;
     
     text-align: center;
     text-decoration: none;
