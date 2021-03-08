@@ -1,0 +1,72 @@
+header {
+    height: 3.5rem;
+}
+nav {
+    height: 3.5rem;
+}
+
+.list-container {
+    display: grid;
+    grid-auto-columns: 275px;
+    grid-auto-flow: column;
+    column-gap: .5rem;
+    align-items: start;
+    overflow-x: auto;
+    height: calc(100vh - 4.5rem);
+}
+
+.add-list-btn {
+    background-color: #e2e4e6 !important;
+    border-radius: .5rem !important;
+    text-align: left !important;
+}
+.add-list-btn:hover {
+    background-color: #cdd2d4 !important;
+}
+
+.list {
+    display: grid;
+
+    background-color: #e2e4e6 !important;
+    border-radius: .5rem;
+
+    grid-template-rows: auto minmax(auto, 1fr) auto;
+    max-height: calc(100vh - 8rem);
+}
+
+.list-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+.list-items {
+    list-style: none;
+    display: grid;
+    grid-row-gap: 0.6rem;
+
+    align-content: start;
+    padding: 0 0.6rem 0.5rem;
+    overflow-y: auto;
+}
+
+.list-items li {
+    background-color: white;
+    border-radius: 0.3rem;
+    border-bottom: 0.1rem solid #ccc;
+    padding: 0.5rem 0.6rem;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+.list-items li:hover {
+    background-color: #eee;
+}
+
+.add-card-btn {
+    display: block;
+    text-align: left !important;
+}
+.add-card-btn:hover {
+    background-color: #cdd2d4;
+}
