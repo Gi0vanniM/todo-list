@@ -32,7 +32,7 @@ nav {
     background: transparent;
     overflow: hidden;
     overflow-wrap: break-word;
-    width: 80%;
+    width: 85%;
 }
 
 textarea {
@@ -104,6 +104,7 @@ textarea:focus {
     border-radius: .5rem !important;
     text-align: left !important;
     color: #838c91 !important;
+    margin-right: .5rem !important;
 }
 .add-list-btn:hover, .add-card-btn:hover {
     background-color: #cdd2d4 !important;
