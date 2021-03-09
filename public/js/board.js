@@ -19,6 +19,7 @@ listTitle.forEach(element => {
         // if enter key press (this is always checked)
         if (event.keyCode == 13) {
             event.preventDefault();
+            element.blur();
         }
     }
 });
@@ -26,6 +27,6 @@ listTitle.forEach(element => {
 function matchHeight(element) {
     // reset height
     element.style.height = 0;
-    // 
+    // set the new 'correct' height
     element.style.height = (25 + element.scrollHeight) + 'px';
 }
