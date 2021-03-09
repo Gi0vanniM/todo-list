@@ -104,7 +104,6 @@ textarea:focus {
     border-radius: .5rem !important;
     text-align: left !important;
     color: #838c91 !important;
-    margin-right: .5rem !important;
 }
 .add-list-btn:hover, .add-card-btn:hover {
     background-color: #cdd2d4 !important;
@@ -118,4 +117,15 @@ textarea:focus {
 }
 .add-card-btn:focus, .add-list-btn:focus {
     box-shadow: none !important;
+}
+
+.bg-greyish {
+    background-color: #e2e4e6 !important;
+}
+
+.addList {
+    border-radius: .5rem !important;
+    border: none !important;
+    width: 275px !important;
+    top: 0 !important;
 }
