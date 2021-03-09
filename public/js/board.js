@@ -1,6 +1,11 @@
 let listTitle = document.querySelectorAll('.list-title');
 
+// the way this delay and event listener works will probably be changed in the future
+
+// variable to know when the last event has ran/called
+// right this is only used for list title
 let lastEv = 0;
+// amount of delay (in ms) between events
 let eventDelay = 500;
 // loop through all lists
 listTitle.forEach(element => {
@@ -10,15 +15,17 @@ listTitle.forEach(element => {
     element.onkeydown = function () {
         // only run once every (eventDelay) ms
         if (Date.now() - lastEv > eventDelay) {
+            // set lastEv to currrent time
             lastEv = Date.now();
-
             // call matchHeight
             matchHeight(element);
         }
 
         // if enter key press (this is always checked)
         if (event.keyCode == 13) {
+            // prevent new line
             event.preventDefault();
+            // onfocus keyboard from textarea
             element.blur();
         }
     }
