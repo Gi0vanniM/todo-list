@@ -53,7 +53,30 @@ class Helper
                         $message
                 </div> 
                 HTML;
-
         }
+    }
+
+    /**
+     * check if request method is post
+     * and also check if $_POST contains a variable if $isset is given
+     *
+     * @param [type] $isset
+     * @return boolean
+     */
+    public static function isPostSet($isset = null)
+    {
+        // check if request method is not post
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return false;
+            // check if $isset is given
+        } elseif (isset($isset)) {
+            // check if $_POST contains $isset
+            if (!isset($_POST[$isset])) {
+                echo '$isset';
+                return false;
+            }
+        }
+        return true;
+        
     }
 }
