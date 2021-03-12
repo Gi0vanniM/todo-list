@@ -20,12 +20,16 @@ class User {
      *
      * @param [type] $id
      */
-    public function __construct($id = null)
+    public function __construct($id = null, $session = false)
     {
         $this->db = new Database();
-
-        // TODO: boolean var, if I want to get a user that is not the one logged in...
-        if (isset($_SESSION['userid'])) {
+        // get user data if id is given
+        if (!$session && $id) {
+            $this->getUser($id);
+        } 
+        // if session is true and $_SESSION has a userid, 
+        // it will get the user and set $loggedIn to true
+        if ($session && isset($_SESSION['userid'])) {
             $this->getUser($_SESSION['userid']);
             $this->loggedIn = true;
         }
