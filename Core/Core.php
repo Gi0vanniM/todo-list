@@ -4,6 +4,8 @@ namespace Core;
 
 class Core
 {
+    public static $header = "location: //" . APP_URL;
+
     /**
      * display the requested view with the needed data
      *
