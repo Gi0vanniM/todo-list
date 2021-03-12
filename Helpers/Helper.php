@@ -22,6 +22,14 @@ class Helper
         return false;
     }
 
+    /**
+     * this function will sanitize $data
+     * with trim(), htmlspecialchars() 
+     * and stripcslashes() function
+     *
+     * @param [type] $data
+     * @return string
+     */
     public static function sanitize($data)
     {
         $data = trim($data);
@@ -30,6 +38,11 @@ class Helper
         return $data;
     }
 
+    /**
+     * this will return an alert div
+     *
+     * @return string
+     */
     public static function alert()
     {
         if (isset($_GET['error'])) {
@@ -79,4 +92,18 @@ class Helper
         return true;
         
     }
+
+    /**
+     * temporarily save current url
+     * this will be used so that when the user gets 
+     * redirected to the login page, he will be sent 
+     * back to where he was after successfully logging in
+     *
+     * @return void
+     */
+    public function tempSaveUrl() 
+    {
+        $_SESSION['current_page'] = $_SERVER['REQUEST_URI'];
+    }
+
 }
