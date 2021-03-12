@@ -226,11 +226,13 @@ class User {
      */
     public function authUser($tempUrl = true)
     {
+        // check if user is logged in
         if (!$this->loggedIn) {
             if ($tempUrl) {
                 // temporarily save url
                 Helper::tempSaveUrl();
             }
+            // redirect to login page
             return header(Core::$header . '/login');
         }
     }
