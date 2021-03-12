@@ -1,5 +1,6 @@
 <?php namespace Model;
 
+use Core\Core;
 use Core\Database;
 use Helpers\Helper;
 
@@ -212,6 +213,25 @@ class User {
 
         if ($return) {
             return $this;
+        }
+    }
+    
+    /**
+     * If user is not logged in, redirect to login page.
+     * By default the current url gets saved 
+     * (only if user not logged in) unless $tempUrl is set to false.
+     *
+     * @param [type] $redirect
+     * @return void
+     */
+    public function authUser($tempUrl = true)
+    {
+        if (!$this->loggedIn) {
+            if ($tempUrl) {
+                // temporarily save url
+                Helper::tempSaveUrl();
+            }
+            return header(Core::$header . '/login');
         }
     }
 
