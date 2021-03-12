@@ -13,10 +13,10 @@ class BoardController
 
     public function index() {
         $user = new User(session: true);
-        // if user is not logged in, route to login page
-        if (!$user->loggedIn) {
-            header(Core::$header . '/login');
-        }
+
+        // use the authUser method
+        $user->authUser();
+
         // get the user's lists
         $lists = (new uList())->getListsByUser($user->id);
 
@@ -31,11 +31,9 @@ class BoardController
 
         // get the user
         $user = new User(session: true);
-        // check if user is logged in
-        if (!$user->loggedIn) {
-            // if user isn't logged in, send user to login page
-            return header(Core::$header . '/login');
-        }
+
+        // use the authUser method
+        $user->authUser();
 
         // name of new list and sanitize it
         $newListName = Helper::sanitize($_POST['newListName']);
@@ -45,7 +43,10 @@ class BoardController
             return header(Core::$header . self::$boardUrl);
         }
 
-
-        // return header(self::$boardUrl);
+        return header(Core::$header . self::$boardUrl);
     }
+
+    public function updateList() {}
+
+    public function removeList() {}
 }
