@@ -7,7 +7,24 @@
 
 <div class="list-container px-2 mt-3">
 
+<?php foreach ($lists as $list) { ?>
+    <div class="list">
+            <div class="list-header">
+                <textarea class="list-title m-0"><?= $list->list_name ?></textarea>
 
+                <div class="list-header-extra">
+                    <button class="list-option">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                </div>
+
+            </div>
+            <ul class="list-items m-0">
+                <!-- <li></li> -->
+            </ul>
+            <button class="btn add-card-btn">Add a card</button>
+        </div>
+<?php } ?>
 
 
     <!-- List template -->
