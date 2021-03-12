@@ -24,7 +24,7 @@ class User {
     {
         $this->db = new Database();
 
-        // TODO
+        // TODO: boolean var, if I want to get a user that is not the one logged in...
         if (isset($_SESSION['userid'])) {
             $this->getUser($_SESSION['userid']);
             $this->loggedIn = true;
