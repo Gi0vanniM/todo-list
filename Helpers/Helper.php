@@ -94,16 +94,35 @@ class Helper
     }
 
     /**
-     * temporarily save current url
-     * this will be used so that when the user gets 
+     * Temporarily save current url.
+     * This will be used so that when the user gets 
      * redirected to the login page, he will be sent 
-     * back to where he was after successfully logging in
+     * back to where he was after successfully logging in.
      *
      * @return void
      */
     public static function tempSaveUrl() 
     {
         $_SESSION['current_page'] = $_SERVER['REQUEST_URI'];
+    }
+
+    /**
+     * Get the temporarily saved url.
+     * By default it will also delete 
+     * the variable unless $delete is set to false.
+     *
+     * @param boolean $delete
+     * @return void
+     */
+    public static function currentPage($delete = true)
+    {
+        // get the full url
+        $currentPage = $_SESSION['current_page'];
+        // delete the temporary url (by default)
+        if ($delete) {
+            unset($_SESSION['current_page']);
+        }
+        return $currentPage;
     }
 
 }
