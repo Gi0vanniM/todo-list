@@ -15,7 +15,7 @@ class Route
         if (method_exists($controller, $this->request->action)) {
             call_user_func_array([$controller, $this->request->action], $this->request->params);
         } else {
-            exit("<h1 style='color: red;'>An error has occured. Could not find ". ($this->request->controller)."</h1>");
+            exit("<h1 style='color: red;'>An error has occured. Could not find ". $this->request->controller . ('->' . $this->request->action ?? '') ."</h1>");
         }
     }
 
