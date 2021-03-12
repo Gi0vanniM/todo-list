@@ -101,7 +101,7 @@ class Helper
      *
      * @return void
      */
-    public function tempSaveUrl() 
+    public static function tempSaveUrl() 
     {
         $_SESSION['current_page'] = $_SERVER['REQUEST_URI'];
     }
