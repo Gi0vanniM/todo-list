@@ -12,7 +12,11 @@ class BoardController
     public static $boardUrl = "/board";
 
     public function index() {
-        $user = new User();
+        $user = new User(session: true);
+        // if user is not logged in, route to login page
+        if (!$user->loggedIn) {
+            header(Core::$header . '/login');
+        }
         // get the user's lists
         $lists = (new uList())->getListsByUser($user->id);
 
@@ -26,7 +30,7 @@ class BoardController
         }
 
         // get the user
-        $user = new User();
+        $user = new User(session: true);
         // check if user is logged in
         if (!$user->loggedIn) {
             // if user isn't logged in, send user to login page
