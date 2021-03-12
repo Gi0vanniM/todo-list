@@ -25,9 +25,10 @@ class User {
         $this->db = new Database();
 
         // TODO
-        // if (isset($_SESSION['userid'])) {
-        //     $query = $this->db->run('SELECT * FROM users WHERE id=:id', ['id' => $_SESSION['userid']]);
-        // }
+        if (isset($_SESSION['userid'])) {
+            $this->getUser($_SESSION['userid']);
+            $this->loggedIn = true;
+        }
     }
 
     /**
@@ -137,12 +138,27 @@ class User {
     /**
      * will check if given email exists as user
      *
-     * @param [type] $email
+     * @param String $email
      * @return boolean
      */
     public function emailExists($email) 
     {
         $query = $this->db->run('SELECT email FROM users WHERE email=:email', ['email'=>$email])->fetch();
+        if ($query) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * will check if given id exists as user
+     *
+     * @param Int $id
+     * @return boolean
+     */
+    public function userExists($id)
+    {
+        $query = $this->db->run('SELECT id FROM users WHERE id=:id', ['id' => $id])->fetch();
         if ($query) {
             return true;
         }
