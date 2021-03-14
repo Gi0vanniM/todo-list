@@ -20,7 +20,30 @@ class uList
         $this->db = new Database();
     }
 
-    public function getListById($id) {}
+    /**
+     * get a list by id and put the data into class object
+     * when $return is true, will return the query
+     *
+     * @param int $id
+     * @param boolean $return
+     * @return void
+     */
+    public function getList($id, $return = false)
+    {
+        $query = $this->db->run(
+            'SELECT * FROM lists WHERE id=:id',
+            ['id' => $id]
+        )->fetch();
+
+        $this->id = $query->id;
+        $this->user_id = $query->user_id;
+        $this->list_name = $query->list_name;
+        $this->created_at = $query->created_at;
+
+        if ($return) {
+            return $query;
+        }
+    }
 
     /**
      * get all lists from user
