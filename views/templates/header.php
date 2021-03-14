@@ -11,7 +11,7 @@
     <!-- link style sheet -->
     <link rel="stylesheet" href="//<?= APP_URL ?>/css/style.css">
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/a3078cd2a7.js" crossorigin="anonymous"></script>
 </head>
@@ -22,7 +22,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
             <a href="<?= (VHOST ? '//' : '') . APP_URL ?>" class="navbar-brand"><?= APP_NAME ?></a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarButtons" aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarButtons" aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -35,7 +35,7 @@
                     <?php } ?>
 
                     <!-- Auth button -->
-                    <ul class="navbar-nav ml-lg-auto">
+                    <ul class="navbar-nav ms-lg-auto">
                         <?php if (!isset($_SESSION['userid'])) { ?>
 
                         <a href="login" class="nav-link">Login</a>
