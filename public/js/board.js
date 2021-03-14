@@ -29,6 +29,11 @@ listTitle.forEach(element => {
             element.blur();
         }
     }
+
+    element.onblur = function () {
+        saveListName(element.getAttribute('data-list-id'), element.value);
+    }
+
 });
 
 function matchHeight(element) {
@@ -36,4 +41,14 @@ function matchHeight(element) {
     element.style.height = 0;
     // set the new 'correct' height
     element.style.height = (25 + element.scrollHeight) + 'px';
+}
+
+function saveListName(id, name) {
+    data = new FormData();
+    data.set('id', id);
+    data.set('listName', name);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/board/updateList/" + id, true);
+    xhr.send(data);
 }
