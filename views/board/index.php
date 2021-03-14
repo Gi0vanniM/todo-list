@@ -9,32 +9,32 @@
 
     <?php foreach ($lists as $list) { ?>
         <div class="list">
-                <div class="list-header">
-                    <textarea class="list-title m-0"><?= $list->list_name ?></textarea>
+            <div class="list-header">
+                <textarea class="list-title m-0"><?= $list->list_name ?></textarea>
 
-                    <div class="list-header-extra">
-                        <button class="list-option">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </button>
-                    </div>
-
-                </div>
-                <ul class="list-items m-0">
-                    <!-- <li></li> -->
-                </ul>
-
-                <div class="dropdown">
-                    <button class="btn add-card-btn w-100" type="button" id="dropdownAddTask<?=$list->id?>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,-40">Add a card</button>
-
-                    <form action="//<?= APP_URL ?>/board/addTask/<?=$list->id?>" method="post" class="dropdown-menu addTask bg-greyish p-2 m-0" aria-labelledby="dropdownAddTask<?=$list->id?>">
-                        <div class="form-group m-0">
-                            <input type="text" id="newTaskName" name="newTaskName" class="w-100" placeholder="Enter task description">
-                            <button type="submit" name="addTask" class="btn btn-success py-1 px-2 mt-2">Add task</button>
-                        </div>
-                    </form>
+                <div class="list-header-extra">
+                    <button class="list-option">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
                 </div>
 
             </div>
+            <ul class="list-items m-0">
+                <!-- <li></li> -->
+            </ul>
+
+            <div class="dropdown">
+                <button class="btn add-card-btn w-100" type="button" id="dropdownAddTask<?= $list->id ?>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,-40">Add a card</button>
+
+                <form action="//<?= APP_URL ?>/board/addTask/<?= $list->id ?>" method="post" class="dropdown-menu addTask bg-greyish p-2 m-0" aria-labelledby="dropdownAddTask<?= $list->id ?>">
+                    <div class="form-group m-0">
+                        <input type="text" id="newTaskName" name="newTaskName" class="w-100" placeholder="Enter task description">
+                        <button type="submit" name="addTask" class="btn btn-success py-1 px-2 mt-2">Add task</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     <?php } ?>
 
 
@@ -59,7 +59,7 @@
             <div class="dropdown">
                 <button class="btn add-card-btn w-100" type="button" id="dropdownAddTask#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,-40">Add a card</button>
 
-                <form action="//<?= APP_URL ?>/board/addTask/<?=$list->id?>" method="post" class="dropdown-menu addTask bg-greyish p-2 m-0" aria-labelledby="dropdownAddTask#">
+                <form action="//<?= APP_URL ?>/board/addTask/<?= $list->id ?>" method="post" class="dropdown-menu addTask bg-greyish p-2 m-0" aria-labelledby="dropdownAddTask#">
                     <div class="form-group m-0">
                         <input type="text" id="newTaskName" name="newTaskName" class="w-100" placeholder="Enter task description">
                         <button type="submit" name="addTask" class="btn btn-success py-1 px-2 mt-2">Add task</button>
@@ -81,4 +81,5 @@
         </form>
     </div>
 
+    <div style="width: 0px;">&nbsp;</div>
 </div>
