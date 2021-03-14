@@ -10,7 +10,7 @@
     <?php foreach ($lists as $list) { ?>
         <div class="list">
             <div class="list-header">
-                <textarea class="list-title m-0"><?= $list->list_name ?></textarea>
+                <textarea class="list-title m-0" data-list-id="<?= $list->id ?>"><?= $list->list_name ?></textarea>
 
                 <div class="list-header-extra">
                     <button class="list-option">
@@ -43,7 +43,7 @@
 
         <div class="list">
             <div class="list-header">
-                <textarea class="list-title m-0">*title*</textarea>
+                <textarea class="list-title m-0" data-list-id="<?= $list->id ?>">*title*</textarea>
 
                 <div class="list-header-extra">
                     <button class="list-option">
