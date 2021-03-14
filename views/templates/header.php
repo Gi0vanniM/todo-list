@@ -19,7 +19,7 @@
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
             <a href="<?= (VHOST ? '//' : '') . APP_URL ?>" class="navbar-brand"><?= APP_NAME ?></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarButtons" aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
                     <?php } ?>
 
                     <!-- Auth button -->
-                    <ul class="navbar-nav ms-lg-auto">
+                    <ul class="navbar-nav ms-md-auto">
                         <?php if (!isset($_SESSION['userid'])) { ?>
 
                         <a href="login" class="nav-link">Login</a>
