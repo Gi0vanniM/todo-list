@@ -49,4 +49,13 @@ class BoardController
     public function updateList() {}
 
     public function removeList() {}
+
+
+
+    public function addTask() {}
+
+    public function updateTask() {}
+
+    public function removeTask() {}
+
 }
