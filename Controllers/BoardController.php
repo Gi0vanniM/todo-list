@@ -46,7 +46,34 @@ class BoardController
         return header(Core::$header . self::$boardUrl);
     }
 
-    public function updateList() {}
+    public function updateList()
+    {
+        // check if request is not post
+        if (!Helper::isPostSet()) {
+            return false;
+        }
+        // get the user
+        $user = new User(session: true);
+        // authenticate user
+        $user->authUser();
+
+        // sanitize inputs
+        $listId = Helper::sanitize($_POST['id']);
+        $listName = Helper::sanitize($_POST['listName']);
+
+        $list = new uList();
+        // get the list
+        $list->getList($listId);
+
+        // check if user owns the list
+        if ($list->user_id !== $user->id) {
+            return false;
+        }
+        // update the list
+        if ($list->update($listId, $listName)) {
+            return;
+        }
+    }
 
     public function removeList() {}
 
