@@ -117,5 +117,26 @@ class uList
         return false;
     }
 
-    public function delete($id) {}
+    /**
+     * delete a list
+     *
+     * @param int $id
+     * @return boolean
+     */
+    public function delete($id = null)
+    {
+        if (isset($id)) {
+            $this->id = Helper::sanitize($id);
+        }
+
+        $sql = 'DELETE FROM lists WHERE id=:id';
+        $args = [
+            'id' => $this->id
+        ];
+
+        if ($this->db->run($sql, $args)) {
+            return true;
+        }
+        return false;
+    }
 }
