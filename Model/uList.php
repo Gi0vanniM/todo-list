@@ -90,7 +90,32 @@ class uList
         return false;
     }
 
-    public function update($id) {}
+    /**
+     * update a list
+     *
+     * @param [type] $id
+     * @param [type] $name
+     * @return boolean
+     */
+    public function update($id, $name)
+    {
+        if (!$id || !$name) {
+            return false;
+        }
+
+        $this->getList(Helper::sanitize($id));
+
+        $sql = 'UPDATE lists SET list_name=:list_name WHERE id=:id';
+        $args = [
+            'list_name' => Helper::sanitize($name),
+            'id' => $this->id,
+        ];
+
+        if ($this->db->run($sql, $args)) {
+            return true;
+        }
+        return false;
+    }
 
     public function delete($id) {}
 }
