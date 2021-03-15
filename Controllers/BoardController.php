@@ -20,7 +20,9 @@ class BoardController
         // get the user's lists
         $lists = (new uList())->getListsByUser($user->id);
 
-        return Core::view("board/index", ['title' => 'Board', 'lists' => $lists]);
+        $statuses = Helper::getAllStatus();
+
+        return Core::view("board/index", ['title' => 'Board', 'lists' => $lists, 'statuses' => $statuses]);
     }
 
     public function addList()
