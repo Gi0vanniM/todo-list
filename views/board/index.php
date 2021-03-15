@@ -13,9 +13,20 @@
                 <textarea class="list-title m-0" data-list-id="<?= $list->id ?>"><?= $list->list_name ?></textarea>
 
                 <div class="list-header-extra">
-                    <button class="list-option">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button class="list-option" id="dropdownListOptions<?= $list->id ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownListOptions<?= $list->id ?>">
+                            <li><h6 class="dropdown-header">List actions</h6></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="//<?= APP_URL ?>/board/deleteList/<?= $list->id ?>" method="post">
+                                    <button name="id" value="<?= $list->id ?>" class="dropdown-item text-danger">Delete</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -43,12 +54,23 @@
 
         <div class="list">
             <div class="list-header">
-                <textarea class="list-title m-0" data-list-id="<?= $list->id ?>">*title*</textarea>
+                <textarea class="list-title m-0" data-list-id="#">*title*</textarea>
 
                 <div class="list-header-extra">
-                    <button class="list-option">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button class="list-option" id="dropdownListOptions#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownListOptions#">
+                            <li><h6 class="dropdown-header">List actions</h6></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="//<?= APP_URL ?>/board/deleteList/#" method="post">
+                                    <button name="id" value="#" class="dropdown-item text-danger">Delete</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -69,6 +91,8 @@
         </div>
 
     </template>
+
+
 
     <div class="dropdown">
         <button class="btn add-list-btn w-100" type="button" id="dropdownAddList" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0, -38">Add a list</button>
