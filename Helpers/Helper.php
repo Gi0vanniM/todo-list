@@ -1,6 +1,9 @@
 <?php
 
 namespace Helpers;
+
+use Core\Database;
+
 class Helper
 {
     /**
@@ -123,6 +126,16 @@ class Helper
             unset($_SESSION['current_page']);
         }
         return $currentPage;
+    }
+
+    /**
+     * get all the statuses
+     *
+     * @return Status
+     */
+    public static function getAllStatus()
+    {
+        return (new Database)->run('SELECT * FROM status')->fetchAll();
     }
 
 }
