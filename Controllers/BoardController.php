@@ -75,7 +75,28 @@ class BoardController
         }
     }
 
-    public function removeList() {}
+    public function deleteList()
+    {
+        if (!Helper::isPostSet()) {
+            return false;
+        }
+
+        $user = new User(session: true);
+        $user->authUser();
+
+        $listId = Helper::sanitize($_POST['id']);
+
+        $list = new uList();
+        $list->getList($listId);
+
+        if ($list->user_id !== $user->id) {
+            return false;
+        }
+
+        if ($list->delete()) {
+            return header(Core::$header . self::$boardUrl);
+        }
+    }
 
 
 
