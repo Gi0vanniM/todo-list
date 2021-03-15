@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `lists` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `list_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `list_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
