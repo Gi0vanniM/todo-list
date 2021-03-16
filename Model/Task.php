@@ -117,8 +117,40 @@ class Task
         return false;
     }
 
-    public function update()
+    /**
+     * update a task
+     *
+     * @param [type] $id
+     * @param [type] $description
+     * @param [type] $duration
+     * @param [type] $status_id
+     * @return void
+     */
+    public function update($id = null, $description, $duration, $status_id)
     {
+        if (!$description || !isset($duration) || !$status_id) {
+            return false;
+        }
+        // if id is set, sanitize it and set it to local variable
+        if ($id) {
+            $this->id = Helper::sanitize($id);
+        }
+        // sanitize inputs
+        $this->description = Helper::sanitize($description);
+        $this->duration = Helper::sanitize($duration);
+        $this->status_id = Helper::sanitize($status_id);
+        // set prepared statement
+        $sql = 'UPDATE tasks SET description=:description, duration=:duration, status_id=:status_id WHERE id=:id';
+        $args = [
+            'id' => $this->id,
+            'description' => $this->description,
+            'duration' => $this->duration,
+            'status_id' => $this->status_id,
+        ];
+        if ($this->db->run($sql, $args)) {
+            return true;
+        }
+        return false;
     }
 
     /**
