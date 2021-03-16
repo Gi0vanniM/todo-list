@@ -23,7 +23,14 @@ class BoardController
 
         $statuses = Helper::getAllStatus();
 
-        return Core::view("board/index", ['title' => 'Board', 'lists' => $lists, 'statuses' => $statuses]);
+        $tasks = (new Task())->getTasksByUserId($user->id);
+
+        return Core::view("board/index", [
+            'title' => 'Board',
+            'lists' => $lists,
+            'statuses' => $statuses,
+            'tasks' => $tasks,
+        ]);
     }
 
     public function addList()
