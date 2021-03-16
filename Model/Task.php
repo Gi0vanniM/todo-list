@@ -22,6 +22,40 @@ class Task
     }
 
     /**
+     * get tasks by user id
+     *
+     * @param [type] $userId
+     * @return void
+     */
+    public function getTasksByUserId($userId)
+    {
+        $query = $this->db->run(
+            'SELECT * FROM tasks
+            LEFT JOIN lists ON lists.id=tasks.list_id
+            WHERE lists.user_id=:user_id',
+            ['user_id' => $userId]
+        )->fetchAll();
+
+        return $query;
+    }
+
+    /**
+     * get tasks by list id
+     *
+     * @param int $listId
+     * @return array
+     */
+    public function getTasksByListId($listId)
+    {
+        $query = $this->db->run(
+            'SELECT * FROM tasks WHERE list_id=:list_id',
+            ['list_id' => $listId]
+        )->fetchAll();
+
+        return $query;
+    }
+
+    /**
      * create a task
      *
      * @param int $list_id
@@ -54,5 +88,13 @@ class Task
         }
 
         return false;
+    }
+
+    public function update()
+    {
+    }
+
+    public function delete()
+    {
     }
 }
