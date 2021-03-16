@@ -138,4 +138,14 @@ class Helper
         return (new Database)->run('SELECT * FROM status')->fetchAll();
     }
 
+    public static function getAllStatusWithName()
+    {
+        $statuses = self::getAllStatus();
+        $data = [];
+        foreach ($statuses as $status) {
+            $data[$status->id] = $status->status;
+        }
+        return $data;
+    }
+
 }
