@@ -121,7 +121,25 @@ class Task
     {
     }
 
+    /**
+     * delete a task
+     *
+     * @return void
+     */
     public function delete()
     {
+        if (isset($id)) {
+            $this->id = Helper::sanitize($id);
+        }
+
+        $sql = 'DELETE FROM tasks WHERE id=:id';
+        $args = [
+            'id' => $this->id
+        ];
+
+        if ($this->db->run($sql, $args)) {
+            return true;
+        }
+        return false;
     }
 }
