@@ -46,6 +46,7 @@
                             <small class="text-muted"><?= $statusesNames[$task->status_id] ?></small>
                             <small class="text-muted"><?= $task->duration ?> minutes</small>
                         </li>
+                        <!-- TASK MODAL -->
                         <div class="modal" id="taskModal<?= $task->id ?>" tabindex="-1" aria-labelledby="taskModalLabel<?= $task->id ?>" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -54,6 +55,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form id="updateTask<?= $task->id ?>" action="//<?= APP_URL ?>/board/updateTask/<?= $task->id ?>" method="post" class="modal-body">
+                                        <input type="hidden" name="listId" value="<?= $list->id ?>">
                                         <textarea name="taskModalDescription" id="taskModalDescription"><?= $task->description ?></textarea>
 
                                         <div>
