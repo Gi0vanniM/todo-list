@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Core\Core;
 use Helpers\Helper;
+use Model\Task;
 use Model\uList;
 use Model\User;
 
@@ -80,7 +81,7 @@ class BoardController
     public function deleteList()
     {
         if (!Helper::isPostSet()) {
-            return false;
+            return header(Core::$header . self::$boardUrl);
         }
 
         $user = new User(session: true);
@@ -102,7 +103,33 @@ class BoardController
 
 
 
-    public function addTask() {}
+    public function addTask()
+    {
+        if (!Helper::isPostSet('addTask')) {
+            return header(Core::$header . self::$boardUrl);
+        }
+        // get the user and authenticate
+        $user = new User(session: true);
+        $user->authUser();
+
+        // get the list
+        $listId = Helper::sanitize($_POST['listId']);
+        $list = new uList();
+        $list->getList($listId);
+        // check if the list belongs to the user
+        if ($list->user_id !== $user->id) {
+            return header(Core::$header . self::$boardUrl);
+        }
+        // sanitize the inputs
+        $description = Helper::sanitize($_POST['taskDescription']);
+        $duration = Helper::sanitize($_POST['taskDuration']);
+        $statusId = Helper::sanitize($_POST['taskStatus']);
+        // create the task and head back to overview
+        $task = new Task();
+        if ($task->create($listId, $description, $duration, $statusId)) {
+            return header(Core::$header . self::$boardUrl);
+        }
+    }
 
     public function updateTask() {}
 
