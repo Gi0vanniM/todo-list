@@ -54,17 +54,18 @@
 
                 <form action="//<?= APP_URL ?>/board/addTask/<?= $list->id ?>" method="post" class="dropdown-menu addTask bg-greyish p-2 m-0" aria-labelledby="dropdownAddTask<?= $list->id ?>">
                     <div class="form-group m-0">
-                        <input type="text" id="taskDescription" name="taskDescription" class="w-100" placeholder="Enter task description">
+                        <input type="text" id="taskDescription" name="taskDescription" class="w-100" placeholder="Enter task description" required>
+
                         <input type="hidden" name="listId" value="<?= $list->id ?>">
 
                         <div>
-                            <input type="number" name="taskDuration" id="taskDuration" class="w-50" min="0" placeholder="Duration">
+                            <input type="number" name="taskDuration" id="taskDuration" class="w-50" min="0" placeholder="Duration" required>
                             <label for="taskDuration">minutes</label>
                         </div>
 
                         <div>
                             <label for="taskStatus">Status:</label>
-                            <select name="taskStatus" id="taskStatus" class="w-75">
+                            <select name="taskStatus" id="taskStatus" class="w-75" required>
                                 <option value="">Select a status</option>
                                 <?php foreach ($statuses as $status) { ?>
                                     <option value="<?= $status->id ?>"><?= $status->status ?></option>
