@@ -36,6 +36,17 @@
             </div>
             <ul class="list-items m-0">
                 <!-- <li></li> -->
+                <?php foreach ($tasks as $task) {
+                    if ($task->list_id == $list->id) { ?>
+                        <li>
+                            <p>
+                                <?= $task->description ?>
+                            </p>
+                            <small class="text-muted"><?= $statusesNames[$task->status_id] ?></small>
+                            <small class="text-muted"><?= $task->duration ?> minutes</small>
+                        </li>
+                <?php }
+                } ?>
             </ul>
 
             <div class="dropdown">
