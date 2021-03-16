@@ -56,6 +56,7 @@
                                     </div>
                                     <form id="updateTask<?= $task->id ?>" action="//<?= APP_URL ?>/board/updateTask/<?= $task->id ?>" method="post" class="modal-body">
                                         <input type="hidden" name="listId" value="<?= $list->id ?>">
+                                        <input type="hidden" name="taskId" value="<?= $task->id ?>">
                                         <textarea name="taskModalDescription" id="taskModalDescription"><?= $task->description ?></textarea>
 
                                         <div>
