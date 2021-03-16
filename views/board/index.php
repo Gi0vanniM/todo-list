@@ -8,7 +8,7 @@
 <div class="list-container px-2 mt-3">
 
     <?php foreach ($lists as $list) { ?>
-        <div class="list">
+        <div id="list-<?= $list->id ?>" class="list">
             <div class="list-header">
                 <textarea class="list-title m-0" data-list-id="<?= $list->id ?>"><?= $list->list_name ?></textarea>
 
@@ -24,6 +24,17 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+
+                            <li>
+                                <button class="sortDurationAsc dropdown-item" data-list-id="<?= $list->id ?>">Sort by duration <i class="fas fa-arrow-up"></i></button>
+                            </li>
+                            <li>
+                                <button class="sortDurationDesc dropdown-item" data-list-id="<?= $list->id ?>">Sort by duration <i class="fas fa-arrow-down"></i></button>
+                            </li>
+                            <li>
+                                <button class="sortDurationRes dropdown-item" data-list-id="<?= $list->id ?>">No sorting <i class="text-end fas fa-minus"></i></button>
+                            </li>
+
                             <li>
                                 <form action="//<?= APP_URL ?>/board/deleteList/<?= $list->id ?>" method="post">
                                     <button name="id" value="<?= $list->id ?>" class="dropdown-item text-danger">Delete</button>
