@@ -39,7 +39,7 @@
                 <!-- <li></li> -->
                 <?php foreach ($tasks as $task) {
                     if ($task->list_id == $list->id) { ?>
-                        <li type="button" id="task-<?= $task->id ?>" data-bs-toggle="modal" data-bs-target="#taskModal<?= $task->id ?>" data-list-id="<?= $task->list_id ?>" data-duration="<?= $task->duration ?>" data-status="<?= $task->status_id ?>">
+                        <li type="button" id="task-<?= $task->id ?>" data-bs-toggle="modal" data-bs-target="#taskModal<?= $task->id ?>" data-list-id="<?= $task->list_id ?>" data-task-id="<?= $task->id ?>" data-duration="<?= $task->duration ?>" data-status="<?= $task->status_id ?>">
                             <p>
                                 <?= $task->description ?>
                             </p>
