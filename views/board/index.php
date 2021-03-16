@@ -34,23 +34,66 @@
                 </div>
 
             </div>
+            <!-- TASKS -->
             <ul class="list-items m-0">
                 <!-- <li></li> -->
                 <?php foreach ($tasks as $task) {
                     if ($task->list_id == $list->id) { ?>
-                        <li>
+                        <li type="button" data-bs-toggle="modal" data-bs-target="#taskModal<?= $task->id ?>">
                             <p>
                                 <?= $task->description ?>
                             </p>
                             <small class="text-muted"><?= $statusesNames[$task->status_id] ?></small>
                             <small class="text-muted"><?= $task->duration ?> minutes</small>
                         </li>
+                        <div class="modal" id="taskModal<?= $task->id ?>" tabindex="-1" aria-labelledby="taskModalLabel<?= $task->id ?>" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fw-bold">Editing task</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form id="updateTask<?= $task->id ?>" action="//<?= APP_URL ?>/board/updateTask/<?= $task->id ?>" method="post"  class="modal-body">
+                                        <textarea name="taskModalDescription" id="taskModalDescription"><?= $task->description ?></textarea>
+                                        
+                                        <div>
+                                            <label for="taskModalDuration">Duration:</label>
+                                            <input type="number" name="taskModalDuration" id="taskDuration" class="w-50" min="0" max="9999" placeholder="Duration" value="<?= $task->duration ?>" required>
+                                            <label for="taskModalDuration">minutes</label>
+                                        </div>
+
+                                        <div>
+                                            <label for="taskModalStatus">Status:</label>
+                                            <select name="taskModalStatus" id="taskModalStatus" class="w-75" required>
+                                                <option value="">Select a status</option>
+                                                <?php foreach ($statuses as $status) { ?>
+                                                    <option value="<?= $status->id ?>" <?php if ($task->status_id === $status->id) {?> selected <?php } ?>>
+                                                        <?= $status->status ?>
+                                                    </option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="submit" form="updateTask<?= $task->id ?>" name="updateTask" class="btn btn-primary">Save</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <form action="//<?= APP_URL ?>/board/deleteTask/<?= $task->id ?>" method="post">
+                                            <input type="hidden" name="listId" value="<?= $list->id ?>">
+                                            <button type="submit" name="taskId" value="<?= $task->id ?>" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                 <?php }
                 } ?>
             </ul>
 
+            <!-- ADD TASK -->
             <div class="dropdown">
-                <button class="btn add-card-btn w-100" type="button" id="dropdownAddTask<?= $list->id ?>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,-40">Add a card</button>
+                <button class="btn add-card-btn w-100" type="button" id="dropdownAddTask<?= $list->id ?>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,-40">Add a task</button>
 
                 <form action="//<?= APP_URL ?>/board/addTask/<?= $list->id ?>" method="post" class="dropdown-menu addTask bg-greyish p-2 m-0" aria-labelledby="dropdownAddTask<?= $list->id ?>">
                     <div class="form-group m-0">
@@ -59,7 +102,7 @@
                         <input type="hidden" name="listId" value="<?= $list->id ?>">
 
                         <div>
-                            <input type="number" name="taskDuration" id="taskDuration" class="w-50" min="0" placeholder="Duration" required>
+                            <input type="number" name="taskDuration" id="taskDuration" class="w-50" min="0" max="9999" placeholder="Duration" required>
                             <label for="taskDuration">minutes</label>
                         </div>
 
