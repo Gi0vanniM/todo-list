@@ -66,7 +66,7 @@ class Task
      */
     public function create($list_id, $description, $duration, $status_id)
     {
-        if (!$list_id || !$description || !$duration || !$status_id) {
+        if (!$list_id || !$description || !isset($duration) || !$status_id) {
             return false;
         }
 
