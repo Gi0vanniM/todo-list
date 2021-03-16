@@ -22,6 +22,7 @@ class BoardController
         $lists = (new uList())->getListsByUser($user->id);
 
         $statuses = Helper::getAllStatus();
+        $statusesNames = Helper::getAllStatusWithName();
 
         $tasks = (new Task())->getTasksByUserId($user->id);
 
@@ -29,6 +30,7 @@ class BoardController
             'title' => 'Board',
             'lists' => $lists,
             'statuses' => $statuses,
+            'statusesNames' => $statusesNames,
             'tasks' => $tasks,
         ]);
     }
