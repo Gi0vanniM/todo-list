@@ -28,28 +28,50 @@ class Task
      * by what column the result is ordered.
      * $dir is used to determine what 
      * direction the ordering goes.
+     * $status is for when you only 
+     * want tasks with a certain status.
      *
      * @param [type] $userId
      * @param string $sort
      * @param string $dir
      * @return void
      */
-    public function getTasksByUserId($userId, $sort = 'id', $dir = 'asc')
+    public function getTasksByUserId($userId, $sort = 'id', $dir = 'asc', $status = null)
     {
-        $query = $this->db->run(
-            'SELECT tasks.* FROM tasks
+        // i know this is not the best way to do this, but i wanted to have only one function for this
+        $where = ($status) ? 'WHERE tasks.status_id=:status_id' : ' WHERE lists.user_id=:user_id ';
+        $sql =
+            "SELECT tasks.* FROM tasks
             LEFT JOIN lists ON lists.id=tasks.list_id
-            WHERE lists.user_id=:user_id
-            ORDER BY :sort :dir',
-            [
-                'user_id' => $userId,
-                'sort' => 'tasks.' . $sort,
-                'dir' => $dir
-            ]
-        )->fetchAll();
+            $where
+            ORDER BY :sort :dir";
+        $args = [
+            'sort' => 'tasks.' . $sort,
+            'dir' => $dir
+        ];
+        ($status) ? $args['status_id'] = $status : $args['user_id'] = $userId;
+
+        $query = $this->db->run($sql, $args)->fetchAll();
 
         return $query;
     }
+
+    // public function getTasksByUserId($userId, $sort = 'id', $dir = 'asc')
+    // {
+    //     $query = $this->db->run(
+    //         'SELECT tasks.* FROM tasks
+    //         LEFT JOIN lists ON lists.id=tasks.list_id
+    //         WHERE lists.user_id=:user_id
+    //         ORDER BY :sort :dir',
+    //         [
+    //             'user_id' => $userId,
+    //             'sort' => 'tasks.' . $sort,
+    //             'dir' => $dir
+    //         ]
+    //     )->fetchAll();
+
+    //     return $query;
+    // }
 
     /**
      * get tasks by list id
