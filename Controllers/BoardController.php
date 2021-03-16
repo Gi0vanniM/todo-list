@@ -138,7 +138,34 @@ class BoardController
         }
     }
 
-    public function updateTask() {}
+    public function updateTask()
+    {
+        if (!Helper::isPostSet('updateTask')) {
+            return header(Core::$header . self::$boardUrl);
+        }
+        // get the user and authenticate
+        $user = new User(session: true);
+        $user->authUser();
+
+        // get the list
+        $listId = Helper::sanitize($_POST['listId']);
+        $list = new uList();
+        $list->getList($listId);
+        // check if the list belongs to the user
+        if ($list->user_id !== $user->id) {
+            return header(Core::$header . self::$boardUrl);
+        }
+        // sanitize inputs
+        $taskId = Helper::sanitize($_POST['taskId']);
+        $description = Helper::sanitize($_POST['taskModalDescription']);
+        $duration = Helper::sanitize($_POST['taskModalDuration']);
+        $status = Helper::sanitize($_POST['taskModalStatus']);
+        // get the task
+        $task = new Task();
+        if ($task->update($taskId, $description, $duration, $status)) {
+            return header(Core::$header . self::$boardUrl);
+        }
+    }
 
     public function deleteTask()
     {
