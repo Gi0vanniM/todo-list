@@ -110,8 +110,6 @@ class BoardController
         }
     }
 
-
-
     public function addTask()
     {
         if (!Helper::isPostSet('addTask')) {
@@ -142,6 +140,30 @@ class BoardController
 
     public function updateTask() {}
 
-    public function removeTask() {}
+    public function deleteTask()
+    {
+        if (!Helper::isPostSet()) {
+            return header(Core::$header . self::$boardUrl);
+        }
+        // get the user and authenticate
+        $user = new User(session: true);
+        $user->authUser();
+        // get the list
+        $listId = Helper::sanitize($_POST['listId']);
+        $list = new uList();
+        $list->getList($listId);
+        // check if the list belongs to the user
+        if ($list->user_id !== $user->id) {
+            return header(Core::$header . self::$boardUrl);
+        }
+        // get the task
+        $taskId = Helper::sanitize($_POST['taskId']);
+        $task = new Task();
+        $task->getTask($taskId);
+        // delete the task
+        if ($task->delete()) {
+            return header(Core::$header . self::$boardUrl);
+        }
+    }
 
 }
