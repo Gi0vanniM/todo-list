@@ -30,7 +30,7 @@ class Task
     public function getTasksByUserId($userId)
     {
         $query = $this->db->run(
-            'SELECT * FROM tasks
+            'SELECT tasks.* FROM tasks
             LEFT JOIN lists ON lists.id=tasks.list_id
             WHERE lists.user_id=:user_id',
             ['user_id' => $userId]
