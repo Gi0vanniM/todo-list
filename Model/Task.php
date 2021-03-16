@@ -56,6 +56,33 @@ class Task
     }
 
     /**
+     * get a task by id
+     * if return is set to true it will return the Task class
+     *
+     * @param [type] $id
+     * @param boolean $return
+     * @return void
+     */
+    public function getTask($id, $return = false)
+    {
+        $query = $this->db->run(
+            'SELECT * FROM tasks WHERE id=:id',
+            ['id' => $id]
+        )->fetch();
+
+        $this->id = $query->id;
+        $this->list_id = $query->list_id;
+        $this->description = $query->description;
+        $this->duration = $query->duration;
+        $this->status_id = $query->status_id;
+        $this->created_at = $query->created_at;
+
+        if ($return) {
+            return $this;
+        }
+    }
+
+    /**
      * create a task
      *
      * @param int $list_id
