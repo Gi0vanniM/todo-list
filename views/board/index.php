@@ -39,7 +39,7 @@
                 <!-- <li></li> -->
                 <?php foreach ($tasks as $task) {
                     if ($task->list_id == $list->id) { ?>
-                        <li type="button" data-bs-toggle="modal" data-bs-target="#taskModal<?= $task->id ?>">
+                        <li type="button" id="task-<?= $task->id ?>" data-bs-toggle="modal" data-bs-target="#taskModal<?= $task->id ?>" data-list-id="<?= $task->list_id ?>" data-duration="<?= $task->duration ?>" data-status="<?= $task->status_id ?>">
                             <p>
                                 <?= $task->description ?>
                             </p>
@@ -53,9 +53,9 @@
                                         <h5 class="modal-title fw-bold">Editing task</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form id="updateTask<?= $task->id ?>" action="//<?= APP_URL ?>/board/updateTask/<?= $task->id ?>" method="post"  class="modal-body">
+                                    <form id="updateTask<?= $task->id ?>" action="//<?= APP_URL ?>/board/updateTask/<?= $task->id ?>" method="post" class="modal-body">
                                         <textarea name="taskModalDescription" id="taskModalDescription"><?= $task->description ?></textarea>
-                                        
+
                                         <div>
                                             <label for="taskModalDuration">Duration:</label>
                                             <input type="number" name="taskModalDuration" id="taskDuration" class="w-50" min="0" max="9999" placeholder="Duration" value="<?= $task->duration ?>" required>
@@ -67,7 +67,7 @@
                                             <select name="taskModalStatus" id="taskModalStatus" class="w-75" required>
                                                 <option value="">Select a status</option>
                                                 <?php foreach ($statuses as $status) { ?>
-                                                    <option value="<?= $status->id ?>" <?php if ($task->status_id === $status->id) {?> selected <?php } ?>>
+                                                    <option value="<?= $status->id ?>" <?php if ($task->status_id === $status->id) { ?> selected <?php } ?>>
                                                         <?= $status->status ?>
                                                     </option>
                                                 <?php } ?>
