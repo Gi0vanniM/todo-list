@@ -137,7 +137,7 @@
 
         <form action="//<?= APP_URL ?>/board/addList" method="post" class="dropdown-menu addList bg-greyish p-2 m-0" aria-labelledby="dropdownAddList">
             <div class="form-group m-0">
-                <input type="text" id="newListName" name="newListName" class="w-100" placeholder="Enter list title">
+                <input type="text" id="newListName" name="newListName" class="w-100" placeholder="Enter list title" required>
                 <button type="submit" name="addList" class="btn btn-success py-1 px-2 mt-2">Add list</button>
             </div>
         </form>
