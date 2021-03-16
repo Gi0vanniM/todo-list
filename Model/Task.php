@@ -22,18 +22,30 @@ class Task
     }
 
     /**
-     * get tasks by user id
+     * Get tasks by user id
+     * 
+     * $sort is used to determine what 
+     * by what column the result is ordered.
+     * $dir is used to determine what 
+     * direction the ordering goes.
      *
      * @param [type] $userId
+     * @param string $sort
+     * @param string $dir
      * @return void
      */
-    public function getTasksByUserId($userId)
+    public function getTasksByUserId($userId, $sort = 'id', $dir = 'asc')
     {
         $query = $this->db->run(
             'SELECT tasks.* FROM tasks
             LEFT JOIN lists ON lists.id=tasks.list_id
-            WHERE lists.user_id=:user_id',
-            ['user_id' => $userId]
+            WHERE lists.user_id=:user_id
+            ORDER BY :sort :dir',
+            [
+                'user_id' => $userId,
+                'sort' => 'tasks.' . $sort,
+                'dir' => $dir
+            ]
         )->fetchAll();
 
         return $query;
