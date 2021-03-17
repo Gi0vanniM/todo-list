@@ -253,6 +253,32 @@ class User {
         }
     }
 
+    /**
+     * set a user's role
+     *
+     * @param [type] $roleId
+     * @return void
+     */
+    public function setRole($roleId)
+    {
+        if (!$roleId) {
+            return false;
+        }
+        if ($this->role) {
+            $sql = 'UPDATE user_roles SET role_id=:role_id WHERE user_id=:user_id';
+        } else {
+            $sql = 'INSERT INTO user_roles (user_id, role_id) VALUES (:user_id, :role_id)';
+        }
+        $args = [
+            'user_id' => $this->id,
+            'role_id' => $roleId,
+        ];
+        if ($this->db->run($sql, $args)) {
+            return true;
+        }
+        return false;
+    }
+
     public static function getAllRoles()
     {
         return (new Database())->run(
