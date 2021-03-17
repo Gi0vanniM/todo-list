@@ -198,7 +198,7 @@ class User {
     {
         // TODO: sanitize inputs
         $query = $this->db->run(
-        'SELECT users.*, roles.role_name 
+        'SELECT users.*, roles.role_name, roles.id as role_id
         FROM users 
         LEFT JOIN user_roles ON users.id=user_roles.user_id 
         LEFT JOIN roles ON user_roles.role_id=roles.id 
@@ -225,7 +225,7 @@ class User {
     public function getAllUsers()
     {
         return $this->db->run(
-            'SELECT users.*, roles.role_name
+            'SELECT users.*, roles.role_name, roles.id as role_id
             FROM users
             LEFT JOIN user_roles ON users.id=user_roles.user_id
             LEFT JOIN roles ON user_roles.role_id=roles.id'
@@ -251,6 +251,13 @@ class User {
             // redirect to login page
             return header(Core::$header . '/login');
         }
+    }
+
+    public static function getAllRoles()
+    {
+        return (new Database())->run(
+            'SELECT * FROM roles'
+        )->fetchAll();
     }
 
 }
