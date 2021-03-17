@@ -2,8 +2,12 @@
 
 namespace Core;
 
+use Model\User;
+
 class Core
 {
+    public static $header = "location: //" . APP_URL;
+
     /**
      * display the requested view with the needed data
      *
@@ -18,6 +22,9 @@ class Core
                 $$key = $value;
             }
         }
+
+        $_CurrentUser = new User(session: true);
+
         require(ROOT . 'views/templates/header.php');
         require(ROOT . 'views/' . $file . '.php');
         require(ROOT . 'views/templates/footer.php');

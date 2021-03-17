@@ -25,7 +25,8 @@ class Login
 
             // double check
             if ($user->loggedIn) {
-                header("location: //" . APP_URL);
+                // redirect to home page, or redirect back to page before redirect to /login
+                header("location: //" . APP_URL . (Helper::currentPage() ?? ''));
                 exit;
             } else {
                 header("location: //" . APP_URL . "/login?error=login&email=$emailSignin");
