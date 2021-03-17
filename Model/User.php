@@ -223,9 +223,9 @@ class User {
      *
      * @return array
      */
-    public function getAllUsers()
+    public static function getAllUsers()
     {
-        return $this->db->run(
+        return (new Database)->run(
             'SELECT users.*, roles.role_name, roles.id as role_id
             FROM users
             LEFT JOIN user_roles ON users.id=user_roles.user_id
