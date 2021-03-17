@@ -88,7 +88,6 @@ class Helper
         } elseif (isset($isset)) {
             // check if $_POST contains $isset
             if (!isset($_POST[$isset])) {
-                echo '$isset';
                 return false;
             }
         }
