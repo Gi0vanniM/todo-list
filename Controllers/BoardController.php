@@ -24,7 +24,12 @@ class BoardController
         $statuses = Helper::getAllStatus();
         $statusesNames = Helper::getAllStatusWithName();
 
-        $tasks = (new Task())->getTasksByUserId($user->id);
+        if (Helper::isPostSet('fStatus')) {
+            $filterStatus = Helper::sanitize($_POST['fStatus']);
+            $tasks = (new Task())->getTasksByUserId($user->id, status: $filterStatus);
+        } else {
+            $tasks = (new Task())->getTasksByUserId($user->id);
+        }
 
         return Core::view("board/index", [
             'title' => 'Board',
