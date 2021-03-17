@@ -114,7 +114,6 @@ class User {
         $this->username = Helper::sanitize($username);
         $this->email = Helper::sanitize($email);
         $this->password = Helper::sanitize($password);
-        $this->role = Helper::sanitize($role);
 
         if ($this->create()) {
             return true;
