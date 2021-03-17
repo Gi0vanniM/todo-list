@@ -19,7 +19,7 @@ class AdminController
             return header(Core::$header);
         }
         // get all users
-        $allUsers = (new User())->getAllUsers();
+        $allUsers = User::getAllUsers();
         // get all roles
         $allRoles = User::getAllRoles();
 
