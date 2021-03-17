@@ -34,6 +34,9 @@
                             <li>
                                 <button class="sortDurationRes dropdown-item" data-list-id="<?= $list->id ?>">No sorting <i class="text-end fas fa-minus"></i></button>
                             </li>
+                            <li>
+                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalStatus">Filter status</button>
+                            </li>
 
                             <li>
                                 <form action="//<?= APP_URL ?>/board/deleteList/<?= $list->id ?>" method="post">
@@ -201,4 +204,34 @@
     </div>
 
     <div style="width: 0px;">&nbsp;</div>
+
+    <div class="modal" id="modalStatus" tabindex="-1" aria-labelledby="modalStatusLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalStatusLabel">Filter status</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="filterStatusForm" action="//<?= APP_URL ?>/board" method="post">
+                        <label for="fStatus">Status:</label>
+                        <select name="fStatus" id="fStatus" class="w-75" required>
+                            <option value="">Select a status</option>
+                            <option value="">No filter</option>
+                                <?php foreach ($statuses as $status) { ?>
+                                <option value="<?= $status->id ?>">
+                                    <?= $status->status ?>
+                                </option>
+                                <?php } ?>
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="filterStatusForm" name="filterStatus" class="btn btn-primary">Filter</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
