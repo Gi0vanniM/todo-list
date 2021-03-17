@@ -128,3 +128,9 @@ textarea:focus {
     border: none !important;
     width: 275px !important;
 }
+
+.btn-verysmall {
+    padding: .1rem .1rem !important;
+    font-size: .8rem !important;
+    border-radius: .2rem !important;
+}
