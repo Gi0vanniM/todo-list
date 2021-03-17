@@ -196,6 +196,7 @@ class User {
      */
     public function getUser($id, $return = false)
     {
+        // TODO: sanitize inputs
         $query = $this->db->run(
         'SELECT users.*, roles.role_name 
         FROM users 
@@ -214,6 +215,21 @@ class User {
         if ($return) {
             return $this;
         }
+    }
+
+    /**
+     * get all users in database including their role
+     *
+     * @return array
+     */
+    public function getAllUsers()
+    {
+        return $this->db->run(
+            'SELECT users.*, roles.role_name
+            FROM users
+            LEFT JOIN user_roles ON users.id=user_roles.user_id
+            LEFT JOIN roles ON user_roles.role_id=roles.id'
+        )->fetchAll();
     }
     
     /**
