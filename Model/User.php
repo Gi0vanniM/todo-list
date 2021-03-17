@@ -65,6 +65,11 @@ class User {
             $_SESSION['token'] = '1234';
             $this->loggedIn = true;
 
+            // give user standard role if it didnt already
+            if (!$this->role) {
+                $this->setRole(1);
+            }
+
             return true;
         }
         
@@ -91,10 +96,9 @@ class User {
      * @param [type] $username
      * @param [type] $email
      * @param [type] $password
-     * @param string $role
      * @return boolean
      */
-    public function register($username = null, $email = null, $password = null, $role = 'user')
+    public function register($username = null, $email = null, $password = null)
     {
         // check if all needed variables are there, role is not necessary
         if (!$username || !$email || !$password) {
@@ -110,7 +114,6 @@ class User {
         $this->username = Helper::sanitize($username);
         $this->email = Helper::sanitize($email);
         $this->password = Helper::sanitize($password);
-        $this->role = Helper::sanitize($role);
 
         if ($this->create()) {
             return true;
@@ -134,8 +137,6 @@ class User {
             'email' => strtolower($this->email),
             'password' => password_hash($this->password, PASSWORD_BCRYPT),
         ];
-
-        // TODO: also save a role
 
         return $this->db->run($sql, $args);
     }

@@ -10,7 +10,17 @@ class AdminController
 {
     public function index()
     {
+        // get the currently logged in user
+        $user = new User(session: true);
+        $user->authUser();
+        // check if user is an admin
+        // if not, redirect user to home page
+        if ($user->role !== 'admin') {
+            return header(Core::$header);
+        }
+        // get all users
         $allUsers = (new User())->getAllUsers();
+        // get all roles
         $allRoles = User::getAllRoles();
 
         return Core::view('admin/index', [
