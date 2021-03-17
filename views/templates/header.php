@@ -32,18 +32,21 @@
                     <?php if (isset($_SESSION['username'])) { ?>
                         <a href="#" class="nav-link"><?= $_SESSION['username'] ?></a>
                         <a href="board" class="nav-link">Board</a>
+                        <?php if ($_CurrentUser->role === 'admin') { ?>
+                            <a href="admin" class="nav-link">Administration</a>
+                        <?php } ?>
                     <?php } ?>
 
                     <!-- Auth button -->
                     <ul class="navbar-nav ms-md-auto">
                         <?php if (!isset($_SESSION['userid'])) { ?>
 
-                        <a href="login" class="nav-link">Login</a>
-                        <a href="register" class="nav-link">Register</a>
-                        
+                            <a href="login" class="nav-link">Login</a>
+                            <a href="register" class="nav-link">Register</a>
+
                         <?php } else { ?>
 
-                        <a href="logout" class="nav-link">Logout</a>
+                            <a href="logout" class="nav-link">Logout</a>
 
                         <?php } ?>
                     </ul>
